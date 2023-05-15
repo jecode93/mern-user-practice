@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose")
+const userRoute = require("./route/route")
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -10,11 +11,7 @@ app.use((req, res, next) => {
 })
 
 //Route
-app.get("/", (req, res) => {
-    res.json({
-        msg: "App running"
-    })
-})
+app.use("/api/users", userRoute)
 
 //DB connection
 mongoose.connect(process.env.DB)
